@@ -1,0 +1,35 @@
+% resample data and dave to a dat file
+fs=1250;
+cnt=1;
+% band_def{cnt}=[1,4];band_name{cnt}='delta';cnt=cnt+1;
+band_def{cnt}=[4,12];band_name{cnt}='theta';cnt=cnt+1;
+band_def{cnt}=[12,30];band_name{cnt}='beta';cnt=cnt+1;
+band_def{cnt}=[30,200];band_name{cnt}='gamma';cnt=cnt+1;
+Nch=33;
+ch2fil=1:32;
+%% locate original file
+[f,p]=uigetfile('*.lfp','Select file to resample');
+
+data=readmulti_frank([p f],Nch,1:Nch,0,inf);
+
+tp_mat=(1:size(data,1))'/fs;
+fil_mat=[tp_mat data(:,ch2fil)];
+
+for idx=1:length(band_def)
+    BP=band_def{idx};
+    %% filtering
+    data_fil=FilterLFP(fil_mat,'passband', BP);
+    data(:,ch2fil)=data_fil(:,2:end);
+    
+    %% file writting
+    f_out=[p f(1:end-4) '_' band_name{idx} '.lfp'];
+    fid=fopen(f_out,'w+');
+    fwrite(fid,data','int16');
+    fclose(fid);
+    
+    f_xml_res=[f(1:end-3)
+    if ispc
+    else
+        system(['cp ''' p f_xml_res ''' ''' p_dat f_xml_res '''']); %copy xml file to dest folder
+    end
+end

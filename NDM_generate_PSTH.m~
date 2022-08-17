@@ -1,0 +1,19 @@
+%script for generating PSTH
+%need .res file and .clu file for cluster information 
+%need .evt file for event marker
+[fc,pc]=uigetfile('*.clu.*','Please select cluster file');
+[fe,pe]=uigetfile('*.evt','Please select event file');
+fs=20e3;
+win=10; %window of PSTH in second
+bin=0.2; %binsize in second
+event=LoadEvents([pe fe]);
+evt_time=event.time(cellfun(@(x) strcmp(x,event.description{1}),event.description))*fs;
+time_mask=nan(max(spk_time),1);
+for idx=1:length(evt_time)
+    time_mask
+end
+clu=importdata([pc fc]);
+spk_time=importdata([pc strrep(fc,'.clu.','.res.')]); %first element is the number of clusters
+spk_Nclu=clu(1);
+spk_clu=clu(2:end);
+

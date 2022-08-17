@@ -1,0 +1,39 @@
+%% DAT cohereogram calculation
+[f,p]=uigetfile({'*.lfp','*.lfp|Select lfp files';'*.dat','*.dat|Select dat files';},'MultiSelect','Off');
+t_xml=fileread([p f(1:end-4) '.xml']);
+Nch_str=regexpi(t_xml,'(?<=<nChannels>)\d+(?=<)','match');
+Nch=str2num(Nch_str{1});
+fs_str=regexpi(t_xml,'(?<=<samplingRate>)\d+(?=<)','match');
+fs=str2num(fs_str{1});
+if strcmp(f(end-2:end),'lfp') %check if target file is lfp file
+    fs=1250;
+end
+cd(p);
+[fe,pe]=uigetfile('*.evt','Please select event file');
+event=LoadEvents([pe fe]);
+evt_type=unique(event.description);
+evt_sel=listdlg('PromptString','Select event type','ListString',evt_type,'SelectionMode','single'); %channels to analysis, this is systematic(setup dependent).
+evt_time=round(event.time(cellfun(@(x) strcmp(x,evt_type{evt_sel}),event.description))*fs);
+win=5; %window length for event calculation in second
+
+ch_sel=listdlg('PromptString','Select channels to run coherence','ListString',arrayfun(@(x) num2str(x),1:Nch,'UniformOutput',0),'SelectionMode','multiple'); %channels to analysis, this is systematic(setup dependent).
+ch_sel=inputdlg('Check channel selection','check channel selection',1,{num2str(ch_sel)});
+ch_sel=str2num(ch_sel{1});
+
+C=cell(length(evt_time),2);
+f_coh=@(x,y) MTCoherogram(x,y,'frequency',fs,'range',[0 200],'window',5);
+t_ruler=[-win*fs:win*fs]';
+for e_idx=1:length(evt_time)
+    data=readmulti_frank([p f],Nch,ch_sel,evt_time(e_idx)-win*fs,evt_time(e_idx)+win*fs);
+    for c1=1:length(ch_sel)
+        for c2=2:length(ch_sel)
+            lfp1=[t_ruler(1:win*fs+1) data(1:win*fs+1,c1)];
+            lfp2=[t_ruler(1:win*fs+1) data(1:win*fs+1,c2)];
+            [C1,t,f]=f_coh(lfp1,lfp2);
+            lfp3=[t_ruler(win*fs+1:end) data(win*fs+1:end,c1)];
+            lfp4=[t_ruler(win*fs+1:end) data(win*fs+1:end,c2)];
+            [C2,t,f]=f_coh(lfp3,lfp4);
+            
+        end
+    end
+end

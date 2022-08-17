@@ -1,0 +1,46 @@
+function DAT_file_pre_processor_HD32(filename)
+if isempty(filename)
+    [f,p]=uigetfile('*.dat');
+    filename=
+end
+%Dat_file_pre_processor_ HD32
+Nchan=32;
+chans=[1:32];
+fs=1250;
+bulk=100e3;
+
+
+f1='amplifier.dat';
+start=0;
+fb=inf;
+fh=fopen([ f1(1:end-4) '_fixed.dat'],'w');
+fh2=fopen([ f1(1:end-4) '_stimulation_time.dat'],'w');
+
+%% filter design
+% All frequency values are in Hz.
+Fs = 1250;  % Sampling Frequency
+
+Fstop = 0.1;         % Stopband Frequency
+Fpass = 0.2;         % Passband Frequency
+Astop = 80;          % Stopband Attenuation (dB)
+Apass = 1;           % Passband Ripple (dB)
+match = 'stopband';  % Band to match exactly
+
+% Construct an FDESIGN object and call its BUTTER method.
+h  = fdesign.highpass(Fstop, Fpass, Astop, Apass, Fs);
+Hd = design(h, 'butter', 'MatchExactly', match);
+
+%%data process
+filter_swap=zeros(2*fs,Nchan);  %add 2 second filter swap space for the smooth transition between  bulks
+while start*Nchan*2<fb
+    [dat,fb]=readmulti_frank(filename,Nchan,chans,start,start+bulk-1);
+    filter_temp=filtfilt(Hd,[filter_swap dat]);
+    if start*Nchan*2>=fb
+        fwrite(fh,filter_temp(fs+1:end,:),'int16');
+    else
+        fwrite(fh,filter_temp(fs+1:end-fs+1,:),'int16');
+    end
+    start=start+bulk;
+end
+fclose(fh);
+fclose(fh2);

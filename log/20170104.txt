@@ -1,0 +1,3 @@
+updated ica2raw, ica component select found bug , size(icaweights,1)
+updated dat_xmlread, add good_ch output
+updated ica2raw, add xml good channel read function

@@ -1,0 +1,137 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../open64/lib//be.exe
+	// nvopencc 4.1 built on 2012-09-25
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/AERO-T~1/AppData/Local/Temp/tmpxft_000015e0_00000000-11_stock_accelerate_profit.cpp3.i (C:/Users/AERO-T~1/AppData/Local/Temp/ccBI#.a06836)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:64
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/AERO-T~1/AppData/Local/Temp/tmpxft_000015e0_00000000-10_stock_accelerate_profit.cudafe2.gpu"
+	.file	2	"D:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin/../../VC/\INCLUDE\crtdefs.h"
+	.file	3	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\crt/device_runtime.h"
+	.file	4	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\host_defines.h"
+	.file	5	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\builtin_types.h"
+	.file	6	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_types.h"
+	.file	7	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\host_defines.h"
+	.file	8	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\driver_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\surface_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\texture_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\vector_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\builtin_types.h"
+	.file	13	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\device_launch_parameters.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\crt\storage_class.h"
+	.file	15	"stock_accelerate_profit.cu"
+	.file	16	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\common_functions.h"
+	.file	17	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\math_functions.h"
+	.file	18	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\math_constants.h"
+	.file	19	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h"
+	.file	20	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_11_atomic_functions.h"
+	.file	21	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_12_atomic_functions.h"
+	.file	22	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_13_double_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_20_atomic_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_35_atomic_functions.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_20_intrinsics.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_30_intrinsics.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_35_intrinsics.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\surface_functions.h"
+	.file	29	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\texture_fetch_functions.h"
+	.file	30	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\texture_indirect_functions.h"
+	.file	31	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\surface_indirect_functions.h"
+	.file	32	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\math_functions_dbl_ptx1.h"
+
+
+	.entry _Z23stock_accelerate_profitPdS_S_iiii (
+		.param .u64 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_f,
+		.param .u64 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_profit,
+		.param .u64 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_p,
+		.param .s32 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_levels,
+		.param .s32 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size1,
+		.param .s32 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size2,
+		.param .s32 __cudaparm__Z23stock_accelerate_profitPdS_S_iiii_len_p)
+	{
+	.reg .u32 %r<24>;
+	.reg .u64 %rd<16>;
+	.reg .f64 %fd<5>;
+	.reg .pred %p<4>;
+	.loc	15	1	0
+$LDWbegin__Z23stock_accelerate_profitPdS_S_iiii:
+	cvt.s32.u16 	%r1, %ctaid.y;
+	ld.param.s32 	%r2, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size2];
+	cvt.s32.u16 	%r3, %tid.x;
+	cvt.s32.u16 	%r4, %ctaid.x;
+	ld.param.s32 	%r5, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size1];
+	ld.param.s32 	%r6, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_levels];
+	mov.u32 	%r7, 0;
+	setp.le.s32 	%p1, %r6, %r7;
+	@%p1 bra 	$Lt_0_2306;
+	ld.param.s32 	%r6, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_levels];
+	mov.s32 	%r8, %r6;
+	ld.param.s32 	%r5, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size1];
+	mul.lo.s32 	%r9, %r1, %r5;
+	mov.s32 	%r10, %r3;
+	add.s32 	%r11, %r9, %r4;
+	mul.lo.s32 	%r12, %r11, %r6;
+	ld.param.s32 	%r2, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size2];
+	cvt.s64.s32 	%rd1, %r2;
+	mul.wide.s32 	%rd2, %r2, 8;
+	mov.s32 	%r13, %r12;
+	add.s32 	%r14, %r12, %r6;
+	ld.param.u64 	%rd3, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_profit];
+	cvt.s64.s32 	%rd4, %r10;
+	mul.wide.s32 	%rd5, %r10, 8;
+	add.u64 	%rd6, %rd3, %rd5;
+	ld.param.u64 	%rd7, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_p];
+	cvt.s64.s32 	%rd8, %r12;
+	mul.wide.s32 	%rd9, %r12, 8;
+	add.u64 	%rd10, %rd7, %rd9;
+	mov.f64 	%fd1, 0d0000000000000000;	// 0
+	mov.s32 	%r15, %r8;
+$Lt_0_1794:
+ //<loop> Loop body line 1, nesting depth: 1, estimated iterations: unknown
+	.loc	15	12	0
+	ld.global.f64 	%fd2, [%rd6+0];
+	ld.global.f64 	%fd3, [%rd10+0];
+	mad.rn.f64 	%fd1, %fd2, %fd3, %fd1;
+	add.s32 	%r13, %r13, 1;
+	add.u64 	%rd10, %rd10, 8;
+	add.u64 	%rd6, %rd2, %rd6;
+	setp.ne.s32 	%p2, %r13, %r14;
+	@%p2 bra 	$Lt_0_1794;
+	bra.uni 	$Lt_0_1282;
+$Lt_0_2306:
+	mov.f64 	%fd1, 0d0000000000000000;	// 0
+$Lt_0_1282:
+	.loc	15	14	0
+	ld.param.u64 	%rd11, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_f];
+	.loc	15	1	0
+	ld.param.s32 	%r2, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size2];
+	.loc	15	14	0
+	mul.lo.s32 	%r16, %r1, %r2;
+	add.s32 	%r17, %r3, %r16;
+	.loc	15	1	0
+	ld.param.s32 	%r5, [__cudaparm__Z23stock_accelerate_profitPdS_S_iiii_size1];
+	.loc	15	14	0
+	mul.lo.s32 	%r18, %r5, %r17;
+	add.s32 	%r19, %r4, %r18;
+	add.s32 	%r20, %r5, 1;
+	mul.lo.s32 	%r21, %r19, %r20;
+	add.s32 	%r22, %r5, %r21;
+	cvt.s64.s32 	%rd12, %r22;
+	mul.wide.s32 	%rd13, %r22, 8;
+	add.u64 	%rd14, %rd11, %rd13;
+	st.global.f64 	[%rd14+0], %fd1;
+	.loc	15	18	0
+	exit;
+$LDWend__Z23stock_accelerate_profitPdS_S_iiii:
+	} // _Z23stock_accelerate_profitPdS_S_iiii
+

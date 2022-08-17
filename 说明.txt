@@ -1,0 +1,12 @@
+链接地址：http://www.mathworks.fr/matlabcentral/fileexchange/23680-axshift
+将axshift.m放在相同目录，例子如下：
+figure('color',[1 1 1]); 
+  for i=1:9; 
+      subplot(4,3,i) 
+      plot(1:40, rand(40,1),'color',[rand(1) rand(1) rand(1)],'linewidth',2); 
+      title(num2str([i]),'fontweight','bold'); 
+  end 
+  subplot(4,3,i+1);image,axis tight;colorbar; 
+  subplot(4,3,i+2);image,axis tight;colorbar 
+  subplot(4,3,i+3);image,axis tight; 
+  axshift; 

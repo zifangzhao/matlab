@@ -1,0 +1,65 @@
+fake2
+data=Rat11_laser_ctrl_20110715_raw.mat
+Prog=
+
+% 2D algorithm verification
+
+
+
+fs=1000;
+[~,chA]=phase_noise(5*fs,fs,-1);
+[~,chB]=phase_noise(5*fs,fs,-1);
+chA=abs(chA);
+chB=abs(chB);
+chA=mapminmax(chA,0,0.6);
+chB=mapminmax(chB,0,0.6);
+fft(chA);
+y=fft(chA);
+x=logspace(0,2,length(y)/2);
+loglog(x,abs(y(1:end/2)))
+
+rawdata=elec10;
+data_seg=rawdata(1601:1650);
+data_seg=data_seg./(max(data_seg)*0.2);
+chA(200:length(data_seg)+200-1)=chA(200:200+length(data_seg)-1)+data_seg';
+chB(450:length(data_seg)+450-1)=chB(450:450+length(data_seg)-1)+data_seg';
+% offset=10000;
+% dly=-500;
+% chA=elec10(offset+1:offset+100000);
+% chB=elec10(offset+dly+1:offset+100000+dly);
+
+
+
+HF=30;
+LF=13;
+fs=HF*3;
+
+n_rec=10;
+p_ref=0.05;
+chA=resample(chA,fs,1000);
+chA=hwt(chA,LF,HF,fs);
+chB=resample(chB,fs,1000);
+chB=hwt(chB,LF,HF,fs);
+
+sampling_delay=max(floor(fs/HF/3),1);% L
+embedding=max(floor(3*HF./LF)+1,1);% m
+w1=max(sampling_delay.*(embedding-1),1);% 文章T. Montez et al. / NeuroImage 33 (2006) 1117–11`25中的w1的一半
+w2=ceil(n_rec/p_ref)+w1-1;% 文章T. Montez et al. / NeuroImage 33 (2006) 1117–1125中的w2的一半
+
+stps=1000;
+delays=1000;
+%改变时间单位
+stps_fixed=1:(stps.*fs/1000);
+delays_fixed=1:(delays.*fs/1000);
+SL_mul=SL_single(chA',chB',w1,w2,embedding,sampling_delay,p_ref,stps_fixed,delays_fixed);
+figure(2)
+imagesc(stps_fixed*1000/fs,delays_fixed*1000/fs,SL_mul); axis xy;
+figure(3)
+tim=(1000/fs).*((1:length(chA))-1);
+subplot(211);plot(tim,chA);
+ylabel('uV')
+xlabel('ms')
+
+subplot(212);plot(tim,chB);
+xlabel('ms')
+ylabel('uV')

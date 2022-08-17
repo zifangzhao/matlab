@@ -1,0 +1,36 @@
+<?xml version='1.0'?>
+<neuroscope version="2.0.0">
+ <files/>
+ <displays>
+  <display>
+   <tabLabel>Field Potentials Display</tabLabel>
+   <showLabels>0</showLabels>
+   <startTime>22500</startTime>
+   <duration>1000</duration>
+   <multipleColumns>0</multipleColumns>
+   <greyScale>0</greyScale>
+   <autocenterChannels>0</autocenterChannels>
+   <positionView>0</positionView>
+   <showEvents>0</showEvents>
+   <spikePresentation>0</spikePresentation>
+   <rasterHeight>33</rasterHeight>
+   <channelPositions>
+    <channelPosition>
+     <channel>0</channel>
+     <gain>10</gain>
+     <offset>0</offset>
+    </channelPosition>
+    <channelPosition>
+     <channel>1</channel>
+     <gain>7</gain>
+     <offset>0</offset>
+    </channelPosition>
+   </channelPositions>
+   <channelsSelected/>
+   <channelsShown>
+    <channel>0</channel>
+    <channel>1</channel>
+   </channelsShown>
+  </display>
+ </displays>
+</neuroscope>

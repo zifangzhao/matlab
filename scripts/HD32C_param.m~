@@ -1,0 +1,5 @@
+%script for calculation all the parameters for the HD32 Board
+fs=20e3;
+%OPA
+G=3;
+Ib=1e-12;

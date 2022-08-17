@@ -1,0 +1,160 @@
+	.version 1.4
+	.target sm_10, map_f64_to_f32
+	// compiled with C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../open64/lib//be.exe
+	// nvopencc 4.1 built on 2012-09-25
+
+	//-----------------------------------------------------------
+	// Compiling C:/Users/AERO-T~1/AppData/Local/Temp/tmpxft_00001554_00000000-11_stock_accelerate_step2.cpp3.i (C:/Users/AERO-T~1/AppData/Local/Temp/ccBI#.a06276)
+	//-----------------------------------------------------------
+
+	//-----------------------------------------------------------
+	// Options:
+	//-----------------------------------------------------------
+	//  Target:ptx, ISA:sm_10, Endian:little, Pointer Size:64
+	//  -O3	(Optimization level)
+	//  -g0	(Debug level)
+	//  -m2	(Report advisories)
+	//-----------------------------------------------------------
+
+	.file	1	"C:/Users/AERO-T~1/AppData/Local/Temp/tmpxft_00001554_00000000-10_stock_accelerate_step2.cudafe2.gpu"
+	.file	2	"D:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\bin/../../VC/\INCLUDE\crtdefs.h"
+	.file	3	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\crt/device_runtime.h"
+	.file	4	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\host_defines.h"
+	.file	5	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\builtin_types.h"
+	.file	6	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_types.h"
+	.file	7	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\host_defines.h"
+	.file	8	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\driver_types.h"
+	.file	9	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\surface_types.h"
+	.file	10	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\texture_types.h"
+	.file	11	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\vector_types.h"
+	.file	12	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\builtin_types.h"
+	.file	13	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\device_launch_parameters.h"
+	.file	14	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\crt\storage_class.h"
+	.file	15	"stock_accelerate_step2.cu"
+	.file	16	"C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v5.0\bin\/../include\common_functions.h"
+	.file	17	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\math_functions.h"
+	.file	18	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\math_constants.h"
+	.file	19	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\device_functions.h"
+	.file	20	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_11_atomic_functions.h"
+	.file	21	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_12_atomic_functions.h"
+	.file	22	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_13_double_functions.h"
+	.file	23	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_20_atomic_functions.h"
+	.file	24	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_35_atomic_functions.h"
+	.file	25	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_20_intrinsics.h"
+	.file	26	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_30_intrinsics.h"
+	.file	27	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\sm_35_intrinsics.h"
+	.file	28	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\surface_functions.h"
+	.file	29	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\texture_fetch_functions.h"
+	.file	30	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\texture_indirect_functions.h"
+	.file	31	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\surface_indirect_functions.h"
+	.file	32	"c:\program files\nvidia gpu computing toolkit\cuda\v5.0\include\math_functions_dbl_ptx1.h"
+
+
+	.entry _Z22stock_accelerate_step2PdS_S_iii (
+		.param .u64 __cudaparm__Z22stock_accelerate_step2PdS_S_iii_score,
+		.param .u64 __cudaparm__Z22stock_accelerate_step2PdS_S_iii_data,
+		.param .u64 __cudaparm__Z22stock_accelerate_step2PdS_S_iii_post,
+		.param .s32 __cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras_seg,
+		.param .s32 __cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras,
+		.param .s32 __cudaparm__Z22stock_accelerate_step2PdS_S_iii_days)
+	{
+	.reg .u32 %r<25>;
+	.reg .u64 %rd<14>;
+	.reg .f64 %fd<11>;
+	.reg .pred %p<7>;
+	.loc	15	2	0
+$LDWbegin__Z22stock_accelerate_step2PdS_S_iii:
+	cvt.s32.u16 	%r1, %tid.x;
+	cvt.s32.u16 	%r2, %ctaid.y;
+	ld.param.s32 	%r3, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_days];
+	ld.param.s32 	%r4, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras];
+	mov.u32 	%r5, 0;
+	setp.le.s32 	%p1, %r4, %r5;
+	@%p1 bra 	$Lt_0_5122;
+	ld.param.s32 	%r4, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras];
+	mov.s32 	%r6, %r4;
+	ld.param.s32 	%r3, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_days];
+	mul.lo.s32 	%r7, %r2, %r3;
+	ld.param.s32 	%r8, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras_seg];
+	mov.s32 	%r9, 0;
+	setp.gt.s32 	%p2, %r8, %r9;
+	mul.lo.s32 	%r10, %r1, %r4;
+	add.s32 	%r11, %r7, %r1;
+	add.s32 	%r12, %r1, 1;
+	cvt.rn.f64.s32 	%fd1, %r12;
+	ld.param.u64 	%rd1, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_data];
+	mov.s32 	%r13, 0;
+	mov.f64 	%fd2, 0d0000000000000000;	// 0
+	mov.s32 	%r14, %r6;
+$Lt_0_3586:
+ //<loop> Loop body line 2, nesting depth: 1, estimated iterations: unknown
+	@!%p2 bra 	$Lt_0_5378;
+	ld.param.s32 	%r8, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras_seg];
+	mov.s32 	%r15, %r8;
+	ld.param.s32 	%r4, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras];
+	mul.lo.s32 	%r16, %r11, %r4;
+	add.s32 	%r17, %r16, %r13;
+	mul.lo.s32 	%r18, %r17, %r8;
+	mov.s32 	%r19, %r18;
+	add.s32 	%r20, %r18, %r8;
+	ld.param.u64 	%rd2, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_post];
+	cvt.s64.s32 	%rd3, %r18;
+	mul.wide.s32 	%rd4, %r18, 8;
+	add.u64 	%rd5, %rd2, %rd4;
+	mov.f64 	%fd3, 0d0000000000000000;	// 0
+	mov.s32 	%r21, %r15;
+$Lt_0_4354:
+ //<loop> Loop body line 2, nesting depth: 2, estimated iterations: unknown
+	.loc	15	14	0
+	ld.global.f64 	%fd4, [%rd5+0];
+	add.f64 	%fd3, %fd4, %fd3;
+	add.s32 	%r19, %r19, 1;
+	add.u64 	%rd5, %rd5, 8;
+	setp.ne.s32 	%p3, %r19, %r20;
+	@%p3 bra 	$Lt_0_4354;
+	bra.uni 	$Lt_0_3842;
+$Lt_0_5378:
+	mov.f64 	%fd3, 0d0000000000000000;	// 0
+$Lt_0_3842:
+	.loc	15	16	0
+	add.s32 	%r22, %r10, %r13;
+	cvt.s64.s32 	%rd6, %r22;
+	mul.wide.s32 	%rd7, %r22, 8;
+	.loc	15	2	0
+	ld.param.u64 	%rd1, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_data];
+	.loc	15	16	0
+	add.u64 	%rd8, %rd1, %rd7;
+	ld.global.f64 	%fd5, [%rd8+0];
+	sub.f64 	%fd6, %fd3, %fd5;
+	.loc	15	20	0
+	neg.f64 	%fd7, %fd6;
+	mov.f64 	%fd8, 0d0000000000000000;	// 0
+	setp.lt.f64 	%p4, %fd6, %fd8;
+	selp.f64 	%fd9, %fd7, %fd6, %p4;
+	mad.rn.f64 	%fd2, %fd1, %fd9, %fd2;
+	add.s32 	%r13, %r13, 1;
+	.loc	15	2	0
+	ld.param.s32 	%r4, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_paras];
+	.loc	15	20	0
+	setp.ne.s32 	%p5, %r4, %r13;
+	@%p5 bra 	$Lt_0_3586;
+	bra.uni 	$Lt_0_3074;
+$Lt_0_5122:
+	.loc	15	2	0
+	ld.param.s32 	%r3, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_days];
+	.loc	15	20	0
+	mul.lo.s32 	%r23, %r2, %r3;
+	add.s32 	%r11, %r1, %r23;
+	mov.f64 	%fd2, 0d0000000000000000;	// 0
+$Lt_0_3074:
+	.loc	15	22	0
+	ld.param.u64 	%rd9, [__cudaparm__Z22stock_accelerate_step2PdS_S_iii_score];
+	cvt.s64.s32 	%rd10, %r11;
+	mul.wide.s32 	%rd11, %r11, 8;
+	add.u64 	%rd12, %rd9, %rd11;
+	st.global.f64 	[%rd12+0], %fd2;
+	.loc	15	23	0
+	exit;
+$LDWend__Z22stock_accelerate_step2PdS_S_iii:
+	} // _Z22stock_accelerate_step2PdS_S_iii
+

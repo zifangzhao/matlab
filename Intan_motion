@@ -1,0 +1,7 @@
+%%motion channel mat file generator
+Nchn=6;
+ch=3;
+f=uigetfile('auxiliary.dat');
+data=readmulti_frank(f,Nchn,ch,0,inf);
+motion=data;
+save motion mootion
