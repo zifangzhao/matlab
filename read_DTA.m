@@ -23,11 +23,7 @@ for idx=1:N
     DTP=data{idx};
 %     data_collected=[data_collected data_fun(DTP)];
     fx=plt_fun(DTP,clr(idx,:));
-%     if(isempty(DTP_all))
-%         DTP_all=[DTP(:,[4,8])];
-%     else
-%         DTP_all=[DTP_all DTP(:,[8])];
-%     end
+
     hold on;
     if(~isempty(strfind(lgd{idx},'PEDOT')))
         set(fx,'linestyle','--');
@@ -37,16 +33,7 @@ for idx=1:N
     %save 2 xlsx file
 
 end
-f_xls=pwd;
-folder_idx=strfind(f_xls,'\');
-folder_name=f_xls(folder_idx(end)+1:end);
-f_xls=[folder_name '_Zmod.xls'];
-fnames={flist{:}};
-fnames=cellfun(@(x) x(1:end-4) ,fnames,'UniformOutput',0);
-titles={'Frequency(Hz)' fnames{:}};
-% writecell(titles,f_xls,'Range','A1');
-% writem3atrix(DTP_all,f_xls,'Range','A2');
-% loglog(DTP(:,4),f_GBW((DTP(:,4))),'--');
+
 legend(lgd,'Interpreter','None')
 title([titlestr ' Zmod'],'Interpreter','none');
 hold off;
@@ -58,11 +45,6 @@ plt_fun=@(x,c) semilogx(x(:,4),x(:,9),'color',c);
 for idx=1:N
     data{idx}=readmatrix(flist{idx},'FileType','text');
     DTP=data{idx};
-%     if(isempty(DTP_all_phase))
-%         DTP_all_phase=[DTP(:,[4,9])];
-%     else
-%         DTP_all_phase=[DTP_all_phase DTP(:,[9])];
-%     end
     fx=plt_fun(DTP,clr(idx,:));
     hold on;
     if(~isempty(strfind(lgd{idx},'PEDOT')))
@@ -75,3 +57,22 @@ legend(lgd,'Interpreter','None','location','NE')
 title([titlestr ' Phase'],'Interpreter','none');
 hold off;
 % saveas(gcf,'Aphase.jpg');
+
+for idx=1:N
+    if(isempty(DTP_all))
+        DTP_all=[DTP(:,[4,8])];
+    else
+        DTP_all=[DTP_all DTP(:,[8])];
+    end
+end
+
+% f_xls=pwd;
+% folder_idx=strfind(f_xls,'\');
+% folder_name=f_xls(folder_idx(end)+1:end);
+% f_xls=[folder_name '_Zmod.xls'];
+% fnames={flist{:}};
+% fnames=cellfun(@(x) x(1:end-4) ,fnames,'UniformOutput',0);
+% titles={'Frequency(Hz)' fnames{:}};
+% writecell(titles,f_xls,'Range','A1');
+% writem3atrix(DTP_all,f_xls,'Range','A2');
+% loglog(DTP(:,4),f_GBW((DTP(:,4))),'--');

@@ -29,6 +29,8 @@ if plt_on
     clr=hsv2rgb([linspace(0,1,N+1)' ones(N+1,1) 0.9.*ones(N+1,1)]);
     clr=reshape([clr]',3,[])';
     for idx= 1:N
+        try
+        disp(['Plotting:' lgd{idx}])
         DTP = DTP_all_cell{idx};
         fx=plt_fun(DTP,clr(idx,:));
     
@@ -39,6 +41,9 @@ if plt_on
         xlabel('Frequency(Hz)');
         ylabel('Zmod(Ohm)')
         %save 2 xlsx file
+        catch
+            disp('Error!')
+        end
     end
     f_xls=pwd;
     folder_idx=strfind(f_xls,'\');
