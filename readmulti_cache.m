@@ -1,5 +1,5 @@
 function  [eeg,fb] = readmulti_cache(fname,numchannel,chselect,read_start,read_until,precision,b_skip)
-temp_dir ='E:\';
+temp_dir ='D:\';
 temp_file = [temp_dir fname(4:end)];
 [pth,file]=fileparts(temp_file);
 
