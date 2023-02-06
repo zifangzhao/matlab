@@ -3,6 +3,8 @@
 clear functions
 pth=which('startup_frank.m');
 function_root=fileparts(pth);
+str_idx = strfind(function_root,'\');
+function_root_supp = [function_root(1:str_idx(end)-1) '\buzcode'];
 %% path setup
 if ispc
 %     function_root='C:\function';
@@ -14,6 +16,10 @@ if ispc
     addpath([function_root '\eeglab']);
     addpath(genpath([function_root '\eeglab']));
     addpath([function_root '\FMAtoolbox']);
+%     addpath(genpath([function_root_supp ]));
+%     addpath([function_root '\TheStateEditor']);
+%     addpath(genpath([function_root_supp 'externalPackages\xmltree-2.0']));
+    addpath(genpath([function_root '\xmltree']));
     addpath([function_root '\MATLAB\TSobjects\'])
     addpath([function_root '\MATLAB\TSobjects\Wrappers']);
     addpath([function_root '\MATLAB\TSobjects\@tsd']);
