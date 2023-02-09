@@ -1,4 +1,17 @@
-function DTP_all_cell=load_EIS(dta_file,plt_on)
+function DTP_all_cell=load_EIS(dta_file,plt_on,f_preprocess)
+if nargin<1
+    plt_on=1;
+    [dta_file,pth]=uigetfile('*.dta',"MultiSelect","on");
+    if(~iscell(dta_file))
+    flist = {dta_file};
+    else
+        flist = dta_file;
+    end
+    flist=cellfun(@(x) [pth  x],flist,'uni',0);
+end
+if nargin<3
+    f_preprocess=@(x) x;
+end
 if(~iscell(dta_file))
     flist = {dta_file};
 else
@@ -8,7 +21,7 @@ end
 
 N=length(flist);
 data=cell(N,1);
-plt_fun=@(x,c) loglog(x(:,4),x(:,8),'color',c);
+plt_fun=@(x,c) loglog(x(:,4),f_preprocess(x(:,8)),'color',c);
 lgd=arrayfun(@(x)flist{x},1:N,'UniformOutput',0);
 strstring=strsplit(pwd,'\');
 titlestr=strstring{end};
@@ -39,7 +52,7 @@ if plt_on
             set(fx,'linestyle','--');
         end
         xlabel('Frequency(Hz)');
-        ylabel('Zmod(Ohm)')
+        ylabel('Impedance(Ohm)')
         %save 2 xlsx file
         catch
             disp('Error!')
