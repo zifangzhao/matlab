@@ -58,15 +58,15 @@ if plt_on
             disp('Error!')
         end
     end
-    f_xls=pwd;
-    folder_idx=strfind(f_xls,'\');
-    folder_name=f_xls(folder_idx(end)+1:end);
-    f_xls=[folder_name '_Zmod.xls'];
-    fnames={flist{:}};
-    fnames=cellfun(@(x) x(1:end-4) ,fnames,'UniformOutput',0);
-    titles={'Frequency(Hz)' fnames{:}};
-    writecell(titles,f_xls,'Range','A1');
-    writematrix(DTP_all,f_xls,'Range','A2');
+%     f_xls=pwd;
+%     folder_idx=strfind(f_xls,'\');
+%     folder_name=f_xls(folder_idx(end)+1:end);
+%     f_xls=[folder_name '_Zmod.xls'];
+%     fnames={flist{:}};
+%     fnames=cellfun(@(x) x(1:end-4) ,fnames,'UniformOutput',0);
+%     titles={'Frequency(Hz)' fnames{:}};
+%     writecell(titles,f_xls,'Range','A1');
+%     writematrix(DTP_all,f_xls,'Range','A2');
     legend(lgd,'Interpreter','None')
     title([titlestr ' Zmod'],'Interpreter','none');
     xlim([1 1e5]);
