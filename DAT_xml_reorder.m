@@ -1,4 +1,4 @@
-function DAT_xml_reorder(ch_new,colorMode)
+function DAT_xml_reorder(ch_maps,colorMode)
 % function for changing XML file channel order/group and color
 % input:
 % ch_new is a cell array has each cell be a group of channels , base is 0
@@ -38,7 +38,19 @@ for idx=1:length(f_all)
        ch_str=regexpi(t_xml(loc_chGroupStart(gidx):loc_chGroupEnd(gidx)),'(?<=>)\d+(?=</channel>)','match');
        ch_old{gidx}=cellfun(@(x) str2num(x),ch_str);
    end
-   
+
+   if(iscell(ch_maps))
+    if(iscell(ch_maps{1}))
+        N_chs = cellfun(@(x) sum(cellfun(@length,x)),ch_maps);
+        offset  = [0 N_chs(1:end-1)];
+        ch_maps=arrayfun(@(x) cellfun(@(g) g+offset(x),ch_maps{x},'uni',0),1:length(offset),'uni',0);
+        ch_new= cat(2,ch_maps{:});
+    else
+        ch_new = ch_maps;
+    end
+   else
+       ch_new = {ch_maps};
+   end
    if(isempty(ch_new))
        ch_new=ch_old;
    end

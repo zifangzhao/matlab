@@ -3,10 +3,16 @@ function figure_formatting(h,width,height,axis_arr,fig_cmd,cbar,clim)
 if nargin<1
     h = gcf;
 end
-if nargin<5
+if nargin<2
     width=600;
+end
+if nargin<3
     height=600;
-    axis_arr=0;
+end
+if nargin<4
+    axis_arr = 0;
+end 
+if nargin<5
     fig_cmd=[];
     cbar=0;
     clim=[];
@@ -27,7 +33,6 @@ p(3)=width_initial;
 p(4)=height_initial;
 set(h,'Position',p); % automate axis labels in the begining
 % set(gcf,'Position',p);
-
 
 
 all_cld=get(h,'Children');
@@ -66,6 +71,7 @@ all_cld=get(h,'Children');
 all_ticklabel = findall(h,'type','text');
 arrayfun(@(x) set(x,'fontsize',1.5*font_size,'color',[0,0,0]),all_ticklabel);
 
+set(h,'Box','on');
 if ~font_only
 %     xt=get(h,'Xtick');
 %     yt=get(h,'Ytick');
