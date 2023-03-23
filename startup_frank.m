@@ -8,6 +8,7 @@ function_root_supp = [function_root(1:str_idx(end)-1) '\buzcode'];
 %% path setup
 if ispc
 %     function_root='C:\function';
+    addpath([function_root '\MinMaxFilterFolder'])
     addpath(function_root);
     addpath([function_root '\gpu']);
     addpath([function_root '\scripts']);

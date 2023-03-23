@@ -53,7 +53,7 @@ arrayfun(@(x) set(x,'Fontname',font,'Fontsize',title_font_size),all_title);
 
 h_all=unique(findall(findobj,'type','figure'));
 idx=h_all==h;
-arrayfun(@close,h_all(~idx));
+% arrayfun(@close,h_all(~idx));
 
 set(h,'Windowstyle','normal');
 p=get(h,'Position');
