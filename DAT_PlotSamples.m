@@ -1,4 +1,3 @@
-%%
 function [data,t]=DAT_PlotSamples(filename,figname,fs,Nch,chlist,start,win,gain,offset,cutoff,datatype)
 if nargin<8
     gain=0.195;

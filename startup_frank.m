@@ -8,6 +8,10 @@ function_root_supp = [function_root(1:str_idx(end)-1) '\buzcode'];
 %% path setup
 if ispc
 %     function_root='C:\function';
+    addpath([function_root '\MinMaxFilterFolder']);
+    addpath(genpath('C:\Code\Matlab\KilosortWrapper'));
+    addpath(genpath('C:\Code\Matlab\KiloSort'));
+    addpath('C:\Code\Matlab\code_reference\npy-matlab\npy-matlab');
     addpath(function_root);
     addpath([function_root '\gpu']);
     addpath([function_root '\scripts']);
@@ -16,6 +20,7 @@ if ispc
     addpath([function_root '\eeglab']);
     addpath(genpath([function_root '\eeglab']));
     addpath([function_root '\FMAtoolbox']);
+    addpath([function_root '\ProbeMap']);
 %     addpath(genpath([function_root_supp ]));
 %     addpath([function_root '\TheStateEditor']);
 %     addpath(genpath([function_root_supp 'externalPackages\xmltree-2.0']));
