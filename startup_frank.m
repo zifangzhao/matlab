@@ -4,7 +4,7 @@ clear functions
 pth=which('startup_frank.m');
 function_root=fileparts(pth);
 str_idx = strfind(function_root,'\');
-function_root_supp = [function_root(1:str_idx(end)-1) '\buzcode'];
+function_root_supp = [function_root(1:str_idx(end)-1) '\matlab_packages\buzcode'];
 %% path setup
 if ispc
 %     function_root='C:\function';
@@ -15,7 +15,7 @@ if ispc
     addpath(function_root);
     addpath([function_root '\gpu']);
     addpath([function_root '\scripts']);
-    addpath([function_root '\Buzlab']);
+%     addpath([function_root '\Buzlab']);
     addpath([function_root '\tsne']);
     addpath([function_root '\eeglab']);
     addpath(genpath([function_root '\eeglab']));
@@ -38,6 +38,7 @@ if ispc
     % addpath(genpath(['\home\ftlproc\Dropbox\MATLAB']));
     % addpath(genpath([function_root '\HMMall']));
     % addpath(genpath('\home\ftlproc\Dropbox\MATLAB'));
+    addpath([function_root_supp '\io']);
     %% enviorment setup
     setenv('MATLAB',matlabroot);
     setenv('MATLAB_BIN',[matlabroot '\bin']);
