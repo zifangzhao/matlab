@@ -1,9 +1,9 @@
-function DTP_all_cell=load_EIS(dta_file,plt_on,f_preprocess)
+function [DTP_all_cell]=load_EIS(dta_file,plt_on,f_preprocess,f_range)
 if nargin<1
     plt_on=1;
     [dta_file,pth]=uigetfile('*.dta',"MultiSelect","on");
     if(~iscell(dta_file))
-    flist = {dta_file};
+        flist = {dta_file};
     else
         flist = dta_file;
     end
@@ -11,6 +11,9 @@ if nargin<1
 end
 if nargin<3
     f_preprocess=@(x) x;
+end
+if nargin<4
+    f_range=[-inf inf];
 end
 if(~iscell(dta_file))
     flist = {dta_file};
@@ -29,7 +32,7 @@ titlestr=strstring{end};
 
 % figure(1)
 DTP_all_cell  = cell(N,1);
-DTP_all=[];
+DTP_Z=[];
 for idx=1:N
     disp(['Process File:' flist{idx}])
     txt = fileread(flist{idx});
@@ -39,46 +42,49 @@ for idx=1:N
     if(length(data{idx}<8)) %if experient is aborted, phase is not calculated
 
     end
-    DTP_all_cell{idx}=data{idx};
+    data_temp=data{idx};
+    f= data_temp(:,4);
+    f_sel= f>f_range(1)&f<f_range(2);
+    DTP_all_cell{idx}=data_temp(f_sel,:);
 end
 
 if plt_on
     clr=hsv2rgb([linspace(0,1,N+1)' ones(N+1,1) 0.9.*ones(N+1,1)]);
     clr=reshape([clr]',3,[])';
     for idx= 1:N
-        try            
+        try
             disp(['Plotting:' lgd{idx}])
             DTP = DTP_all_cell{idx};
-%             subplot(121)
-%             figure(1)
+            %             subplot(121)
+            %             figure(1)
             plt_fun(DTP,clr(idx,:));
             hold on;
             xlabel('Frequency(Hz)');
             ylabel('Impedance(Ohm)')
             title([titlestr ' Zmod'],'Interpreter','none');
-%             subplot(122)
-%             figure(2)
-%             plt_fun_phase(DTP,clr(idx,:));
-%             hold on;
-%             xlabel('Frequency(Hz)');
-%             ylabel('Impedance(Ohm)')
-%             title([titlestr ' Zphase'],'Interpreter','none');
-        %save 2 xlsx file
+            %             subplot(122)
+            %             figure(2)
+            %             plt_fun_phase(DTP,clr(idx,:));
+            %             hold on;
+            %             xlabel('Frequency(Hz)');
+            %             ylabel('Impedance(Ohm)')
+            %             title([titlestr ' Zphase'],'Interpreter','none');
+            %save 2 xlsx file
         catch
             disp('Error!')
         end
     end
-%     f_xls=pwd;
-%     folder_idx=strfind(f_xls,'\');
-%     folder_name=f_xls(folder_idx(end)+1:end);
-%     f_xls=[folder_name '_Zmod.xls'];
-%     fnames={flist{:}};
-%     fnames=cellfun(@(x) x(1:end-4) ,fnames,'UniformOutput',0);
-%     titles={'Frequency(Hz)' fnames{:}};
-%     writecell(titles,f_xls,'Range','A1');
-%     writematrix(DTP_all,f_xls,'Range','A2');
+    %     f_xls=pwd;
+    %     folder_idx=strfind(f_xls,'\');
+    %     folder_name=f_xls(folder_idx(end)+1:end);
+    %     f_xls=[folder_name '_Zmod.xls'];
+    %     fnames={flist{:}};
+    %     fnames=cellfun(@(x) x(1:end-4) ,fnames,'UniformOutput',0);
+    %     titles={'Frequency(Hz)' fnames{:}};
+    %     writecell(titles,f_xls,'Range','A1');
+    %     writematrix(DTP_all,f_xls,'Range','A2');
     legend(lgd,'Interpreter','None')
-    
+
     xlim([1 1e5]);
     hold off;
 end
