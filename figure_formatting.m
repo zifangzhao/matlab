@@ -62,11 +62,11 @@ p(4)=height;
 set(h,'Position',p);
 
 function set_axes(h,axis_arr,font_only,fig_cmd,cbar,clim,font,font_size)
-set(h,'Fontname',font,'Fontsize',font_size,'Gridcolor',[0,0,0],'MinorGridcolor',[0,0,0]);
 axes(h);
 set(h,'XtickMode','manual');
 set(h,'YtickMode','manual');
 all_cld=get(h,'Children');
+set(h,'Fontname',font,'Fontsize',font_size,'Gridcolor',[0,0,0],'MinorGridcolor',[0,0,0]);
 
 all_ticklabel = findall(h,'type','text');
 arrayfun(@(x) set(x,'fontsize',1.5*font_size,'color',[0,0,0]),all_ticklabel);
