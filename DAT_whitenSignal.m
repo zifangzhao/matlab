@@ -20,7 +20,7 @@ if isempty(ArModel)
 end
 [data,~]=WhitenSignal(data,fs*1000,0,ArModel,1);
 %%
-fh=fopen([filename(1:end-4) '_whiten.lfp'],'w+');
-fwrite(fh,data','int16');
-fclose(fh);
-
+% fh=fopen([filename(1:end-4) '_whiten.lfp'],'w+');
+% fwrite(fh,data','int16');
+% fclose(fh);
+sav2dat([filename(1:end-4) '_whiten.lfp'],data);

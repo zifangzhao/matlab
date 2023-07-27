@@ -171,7 +171,7 @@ function pbFile_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global filename A
-[f,p]=uigetfile({'*.lfp','*.lfp|LFP file';'*.dat','*.dat|Binary data file'},'Select file to open');
+[f,p]=uigetfile({'*.lfp','*.lfp|LFP file';'*.dat','*.dat|Binary data file';'*.*','*.*|Other files'},'Select file to open');
 filename=[p f];
 [p,f,e]=fileparts(f);
 if strcmp(e,'.lfp')
