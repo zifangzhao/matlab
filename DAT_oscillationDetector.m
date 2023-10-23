@@ -1,5 +1,5 @@
 %% Detect band activity based on FMAToolbox
-function DAT_oscillationDetector(filename,ch,EvtIdentify,freq_range,power_thre,durations)
+function outputfile=DAT_oscillationDetector(filename,ch,EvtIdentify,freq_range,power_thre,durations)
 % 
 %duration : [int min max]
 if nargin<1
@@ -31,7 +31,8 @@ ch_str = ['_CH' num2str(ch)];
 freq_str =['_L' num2str(freq_range(1))  'H' num2str(freq_range(2))];
 power_str = ['_std' num2str(power_thre(1)) '-' num2str(power_thre(2))];
 dur_str = ['_T' num2str(durations(1)) '_' num2str(durations(2)) '_' num2str(durations(3))];
-save([filename(1:end-4) '_' EvtIdentify ch_str freq_str power_str dur_str],'LFP_events');
+outputfile=[filename(1:end-4) '_' EvtIdentify ch_str freq_str power_str dur_str];
+save(outputfile,'LFP_events');
 
 end
 function LFP_events=data_processer(filename,data,ch,fs,freq,power,duration,EvtIdentify)

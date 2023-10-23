@@ -39,6 +39,8 @@ if ispc
     % addpath(genpath([function_root '\HMMall']));
     % addpath(genpath('\home\ftlproc\Dropbox\MATLAB'));
     addpath([function_root_supp '\io']);
+    addpath(genpath('C:\Code\Matlab\sortingQuality\'));
+    addpath('C:\Code\Matlab\matlab_reference\MATLAB');
     %% enviorment setup
     setenv('MATLAB',matlabroot);
     setenv('MATLAB_BIN',[matlabroot '\bin']);

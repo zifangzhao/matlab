@@ -1,4 +1,4 @@
-function H=shadedErrorBar_semilogX(x,y,errBar,lineProps,transparent)
+function H=shadedErrorBar_loglog(x,y,errBar,lineProps,transparent)
 % function H=shadedErrorBar(x,y,errBar,lineProps,transparent)
 %
 % Purpose 

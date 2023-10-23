@@ -42,7 +42,7 @@ arrayfun(@(x) set(x,'linewidth',line_width),all_axes);
 all_cld=get(h,'Children');
 cbar_axes=findall(all_cld,'tag','Colorbar');                                   %ÐÞÕýcolorbar×ø±êÖá
 if(~isempty(cbar_axes))
-    arrayfun(@(x) set_axes(x,axis_arr,1,[],0,clim,font,label_font_size),cbar_axes);
+%     arrayfun(@(x) set_axes(x,axis_arr,1,[],0,clim,font,label_font_size),cbar_axes);
 end
 
 all_lines = findall(all_cld,'type','line');

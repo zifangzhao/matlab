@@ -358,8 +358,10 @@ if ~isempty(filename)
             set(gca,'yticklabel',{'Delta','Theta','Alpha','Beta','Gamma','HF'});
             set(gca,'ytick',1:6);
         else
-            for idx1=1:size(p,2);
-                p(:,idx1)=smooth(p(:,idx1),span*Fs);
+            for idx1=1:size(p,2)
+                if(span>0)
+                    p(:,idx1)=smooth(p(:,idx1),span*Fs);
+                end
             end
             h_img=imagesc(t,1:length(Freqlist),p');
             sel_idx=round(1:length(Freqlist)/10:length(Freqlist));
