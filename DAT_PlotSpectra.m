@@ -1,5 +1,5 @@
 %%
-function [data,t]=DAT_PlotSpectra(filename,figname,fs,flist,Nch,chlist,start,win,gain,res_fs,cutoff,format)
+function [data,t]=DAT_PlotSpectra(filename,figname,fs,flist,Nch,chlist,start,win,gain,res_fs,cutoff,format,overlap_rawdata)
 if nargin<9
     gain=0.195;
 end
@@ -11,6 +11,10 @@ if nargin<11
 end
 if nargin<12
     format='int16';
+end
+
+if nargin<13
+    overlap_rawdata = 1;
 end
 if length(win)==1
     win=win*ones(1,length(start));
@@ -42,7 +46,9 @@ for idx=1:length(data)
         xlabel('Time(s)');
         ylabel('Frequency (Hz)');
         yyaxis right
-        plot(t,data{idx}(:,idy),'w');
-       
+        if (overlap_rawdata~=0)
+            plot(t,data{idx}(:,idy),'w');
+        end
+
     end
 end
